@@ -1,6 +1,10 @@
+import { useRef } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
+import VariableProximity from "../motions/VariableProximity";
+import GradientText from "../motions/GradientText"
 
 export const Home = () => {
+  const containerRef = useRef(null);
   return (
     <section
       id="home"
@@ -8,15 +12,30 @@ export const Home = () => {
     >
       <RevealOnScroll>
         <div className="text-center z-10 px-4">
-          <h1 className="text-4xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent leading-right">
-            Hi, I'm StephMut.Dev
-          </h1>
-          <p className="text-gray-400 text-lg mb-8 max-w-lg mx-auto">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem
-            porro tempora ratione enim, ad, repudiandae vel quisquam, quasi
-            vitae minima error id sed eos autem illum esse explicabo maxime?
-            Asperiores.
-          </p>
+          <div ref={containerRef} className="inline-block mb-4">
+            <VariableProximity
+              label={"Hi, I'm StephMut.Dev"}
+              className="text-2xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent leading-tight font-robotoFlex"
+              fromFontVariationSettings="'wght' 200, 'opsz' 9"
+              toFontVariationSettings="'wght' 1000, 'opsz' 40"
+              containerRef={containerRef}
+              radius={200}
+              falloff="exponential"
+            />
+          </div>
+          
+          <GradientText
+            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+            animationSpeed={3}
+            showBorder={false}
+            className="custom-class text-lg mb-8 max-w-xl mx-auto gap-8"
+          >
+            A passionate web developer, I design modern websites and
+            applications tailored to real needs and focused on user experience.
+            I enjoy continuous learning and taking on new challenges to deliver
+            creative and efficient solutions. Explore my portfolio to discover
+            my projects and skills.
+          </GradientText>
           <div className="flex justify-center space-x-4">
             <a
               href="#projects"

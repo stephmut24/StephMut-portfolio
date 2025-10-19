@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import emailjs from "emailjs-com";
 
@@ -11,19 +11,57 @@ export const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Defensive checks for env vars to help debugging
+    const serviceId = import.meta.env.VITE_SERVICE_ID;
+    const templateId = import.meta.env.VITE_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error("EmailJS: missing one or more VITE_* env vars", {
+        serviceId,
+        templateId,
+        publicKey,
+      });
+      alert("Configuration error: mail service not configured. Check console.");
+      return;
+    }
+
+    // sendForm returns a promise
     emailjs
-      .sendForm(
-        import.meta.env.VITE_SERVICE_ID,
-        import.meta.env.VITE_TEMPLATE_ID,
-        e.target,
-        import.meta.env.VITE_PUBLIC_KEY
-      )
+      .sendForm(serviceId, templateId, e.target, publicKey)
       .then((result) => {
+        console.log("EmailJS sendForm success", result);
         alert("Message Sent!");
         setFormData({ name: "", email: "", message: "" });
       })
-      .catch(() => alert("Oops! Something went wrong. Please try again."));
+      .catch((error) => {
+        // Show detailed error in console to diagnose (CORS, 4xx/5xx, network, etc.)
+        console.error("EmailJS sendForm error", error);
+        // EmailJS sometimes returns an object with status/text
+        if (error?.text) {
+          alert(`Mail error: ${error.text}`);
+        } else if (error?.status) {
+          alert(`Mail error: status ${error.status}`);
+        } else {
+          alert("Oops! Something went wrong. Check console for details.");
+        }
+      });
   };
+
+  useEffect(() => {
+    // Ensure EmailJS is initialized (helps in some package versions)
+    const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+    if (publicKey) {
+      try {
+        emailjs.init(publicKey);
+        console.log("EmailJS initialized");
+      } catch (err) {
+        console.warn("EmailJS init failed", err);
+      }
+    } else {
+      console.warn("EmailJS public key not found in VITE_PUBLIC_KEY");
+    }
+  }, []);
   return (
     <section id="contact" className="min-h-screen flex justify-center py-20">
       <RevealOnScroll>

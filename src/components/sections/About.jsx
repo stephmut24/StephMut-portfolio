@@ -60,6 +60,16 @@ export const About = () => {
                   Math...
                 </li>
               </ul>
+              <ul className="list-disc text-left list-inside text-gray-300 space-y-2">
+                <li>
+                  <strong>B.S. in Computer Science</strong> - ULPGL-Goma
+                  (2021-2025)
+                </li>
+                <li>
+                  Relevant Coursework: Algorithms,Database, Web development,
+                  Math...
+                </li>
+              </ul>
             </div>
             <div className="p-6 rounded-xl border-white/10 border hover:-translate-y-1 transition-all">
               <h3 className="text-xl font-bold mb-4">💼 Work Experience</h3>
