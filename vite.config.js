@@ -30,5 +30,5 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base:"/StephMut-portfolio",
+  base:"./",
 })
