@@ -27,7 +27,7 @@ export const About = () => {
                   </div>
                   <div className="mt-6 w-full text-left">
                     <div className="text-xs text-gray-400 mb-2">Location</div>
-                    <div className="text-sm text-gray-200">Goma, DRC</div>
+                    <div className="text-sm text-gray-200">Kigali, RWANDA</div>
                     <div className="mt-3 text-xs text-gray-400">Experience</div>
                     <div className="text-sm text-gray-200">2+ years</div>
                   </div>
