@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* removed unsupported @custom-variant; use Tailwind's built-in dark mode (configure in tailwind.config.js) */
 
 html, 
 body{
@@ -40,6 +40,28 @@ body{
   }
   .animate-loading-bar {
     animation: loading 0.8s ease infinite
+  }
+
+  /* Gradient background animation used by GradientText component */
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient {
+    animation-name: gradient;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    /* default duration; can be overridden inline via style.animationDuration */
+    animation-duration: 8s;
+    background-size: 300% 100%;
   }
 }
 

@@ -1,7 +1,7 @@
 import { RevealOnScroll } from "../RevealOnScroll";
 export const About = () => {
   const frontendSkills = ["React", "Next", "TailwindCSS", "Typescript"];
-  const BackendSkills = ["React", "Next", "tailwindCSS", "Typescript"];
+  const BackendSkills = ["Node.js","Express.js", "Nest.js", "Python", "MongoDB", "PostgreSQL"];
   return (
     <section
       id="about"
@@ -14,8 +14,9 @@ export const About = () => {
           </h2>
           <div className="glass rounded-xl p-8 border-white/10 border hover: -translate-y-1 transition-all">
             <p className="text-gray-300 mb-6">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
-              culpa, aspernatur iusto molestiae assumenda fugiat ullam.
+              Result-oriented Software Engineering graduate with a strong foundation in programming, algorithms, and
+data structures. Quick to learn, adaptable, and eager to contribute through internship or full-time
+opportunities while growing professionally
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -52,23 +53,17 @@ export const About = () => {
               <h3 className="text-xl font-bold mb-4">🎓 Education</h3>
               <ul className="list-disc text-left list-inside text-gray-300 space-y-2">
                 <li>
-                  <strong>B.S. in Computer Science</strong> - ULPGL-Goma
-                  (2021-2025)
+                  <strong>Software Dev</strong> - A2SV-Ethiopia (Remote)
+                  (2025 - present)
                 </li>
-                <li>
-                  Relevant Coursework: Algorithms,Database, Web development,
-                  Math...
-                </li>
+                
               </ul>
               <ul className="list-disc text-left list-inside text-gray-300 space-y-2">
                 <li>
                   <strong>B.S. in Computer Science</strong> - ULPGL-Goma
                   (2021-2025)
                 </li>
-                <li>
-                  Relevant Coursework: Algorithms,Database, Web development,
-                  Math...
-                </li>
+                
               </ul>
             </div>
             <div className="p-6 rounded-xl border-white/10 border hover:-translate-y-1 transition-all">
@@ -76,22 +71,16 @@ export const About = () => {
               <div className="space-y-4 text-gray-300">
                 <div>
                   <h4 className="font-semibold">
-                    Intern at Bittwok-Ltd (July 2025 - present)
+                    Intern at Bittwok-Technology-Ltd (July 2025 - present)
                   </h4>
-                  <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Praesentium, sapiente!
-                  </p>
+                  
                 </div>
 
                 <div>
                   <h4 className="font-semibold">
-                    Intern at Bittwok-Ltd (July 2025 - present)
+                    Intern at Initiam (June - July 2025)
                   </h4>
-                  <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Praesentium, sapiente!
-                  </p>
+                 
                 </div>
               </div>
             </div>
