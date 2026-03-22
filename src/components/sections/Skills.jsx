@@ -1,0 +1,74 @@
+import { RevealOnScroll } from "../RevealOnScroll";
+import { Code2, Server, Wrench, MessageCircle } from "lucide-react";
+
+const skillsData = [
+  {
+    title: "Frontend",
+    icon: Code2,
+    color: "cyan",
+    items: ["React", "Next.js", "TailwindCSS", "TypeScript", "Responsive Design"],
+  },
+  {
+    title: "Backend",
+    icon: Server,
+    color: "teal",
+    items: ["Node.js", "Express", "NestJS", "REST APIs", "MongoDB", "PostgreSQL"],
+  },
+  {
+    title: "Outils",
+    icon: Wrench,
+    color: "amber",
+    items: ["Git", "Vite", "VS Code", "Figma"],
+  },
+  {
+    title: "Soft Skills",
+    icon: MessageCircle,
+    color: "blue",
+    items: ["Communication", "Travail d'équipe", "Résolution de problèmes", "Apprentissage continu"],
+  },
+];
+
+const colorClasses = {
+  cyan: "bg-cyan-500/10 border-cyan-500/20 text-cyan-400",
+  teal: "bg-teal-500/10 border-teal-500/20 text-teal-400",
+  amber: "bg-amber-500/10 border-amber-500/20 text-amber-400",
+  blue: "bg-blue-500/10 border-blue-500/20 text-blue-400",
+};
+
+export const Skills = () => {
+  return (
+    <section id="skills" className="min-h-screen flex items-center justify-center py-20">
+      <RevealOnScroll>
+        <div className="max-w-5xl mx-auto px-4">
+          <h2 className="text-4xl md:text-5xl font-bold m-8 md:m-12 text-center bg-gradient-to-r from-blue-500 via-cyan-400 to-teal-400 bg-clip-text text-transparent font-robotoFlex">
+            Skills
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {skillsData.map((group, i) => {
+              const Icon = group.icon;
+              const colorClass = colorClasses[group.color];
+              return (
+                <div
+                  key={i}
+                  className="rounded-xl border border-white/10 p-6 hover:border-white/20 transition-colors"
+                >
+                  <div className={`inline-flex p-2.5 rounded-lg border mb-4 ${colorClass}`}>
+                    <Icon size={22} />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-3">{group.title}</h3>
+                  <ul className="space-y-2">
+                    {group.items.map((item, j) => (
+                      <li key={j} className="text-gray-400 text-sm">
+                        • {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </RevealOnScroll>
+    </section>
+  );
+};

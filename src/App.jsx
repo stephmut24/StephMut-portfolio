@@ -5,8 +5,12 @@ import { Navbar } from "./components/Navbar";
 import { MobileMenu } from "./components/MobileMenu";
 import { Home } from "./components/sections/Home";
 import { About } from "./components/sections/About";
+import { TechStack } from "./components/sections/TechStack";
+import { Skills } from "./components/sections/Skills";
+import { Certifications } from "./components/sections/Certifications";
 import { Project } from "./components/sections/Project";
-import {Contact} from "./components/sections/Contact"
+import { Contact } from "./components/sections/Contact";
+import { Footer } from "./components/Footer";
 import "./index.css";
 import MotionLayout from "./components/MotionLayout";
 import { motion as Motion } from "framer-motion";
@@ -52,7 +56,7 @@ function App() {
           />
         </div>
 
-        <div className="relative z-10">
+        <main className="relative z-10" role="main">
           <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
@@ -77,13 +81,23 @@ function App() {
               <About />
             </Motion.div>
             <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
+              <TechStack />
+            </Motion.div>
+            <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
+              <Skills />
+            </Motion.div>
+            <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
+              <Certifications />
+            </Motion.div>
+            <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
               <Project />
             </Motion.div>
             <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
               <Contact />
             </Motion.div>
           </Motion.div>
-        </div>
+          <Footer />
+        </main>
       </MotionLayout>
     </>
   );

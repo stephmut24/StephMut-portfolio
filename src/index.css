@@ -3,17 +3,55 @@
 
 /* removed unsupported @custom-variant; use Tailwind's built-in dark mode (configure in tailwind.config.js) */
 
-html, 
-body{
-  margin:0;
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
   padding: 0;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Roboto Flex', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   background: hsl(0, 0%, 4%);
-  color:#f3f4f6
+  color: #f3f4f6;
 }
 
 .font-robotoFlex {
   font-family: 'Roboto Flex', sans-serif;
+}
+
+/* Accent color palette - mix for visual variety */
+:root {
+  --accent-blue: #3b82f6;
+  --accent-cyan: #22d3ee;
+  --accent-orange: #ff7a18;
+  --accent-teal: #319197;
+  --accent-rose: #af002d;
+}
+
+/* Skip to content - accessibility */
+#skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+}
+#skip-link:focus {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  padding: 0.75rem 1rem;
+  background: #3b82f6;
+  color: white;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 @layer utilities {
   @keyframes blink {
@@ -62,6 +100,25 @@ body{
     /* default duration; can be overridden inline via style.animationDuration */
     animation-duration: 8s;
     background-size: 300% 100%;
+  }
+
+  /* Tech stack marquee - sweep left to right */
+  @keyframes marquee {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  .animate-marquee {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    animation: marquee 25s linear infinite;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
   }
 }
 
@@ -190,5 +247,12 @@ body{
   }
   body {
     @apply bg-background text-foreground;
+  }
+  /* Accessible focus states */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    @apply outline-2 outline-offset-2 outline-blue-400;
   }
 }
