@@ -1,38 +1,18 @@
 import { RevealOnScroll } from "../RevealOnScroll";
-import { MapPin, Calendar, GraduationCap, Briefcase, Code2 } from "lucide-react";
-
-const educationData = [
-  {
-    degree: "Software Development Program",
-    institution: "A2SV Ethiopia",
-    location: "Remote",
-    period: "2025 – Present",
-  },
-  {
-    degree: "B.S. in Computer Science",
-    institution: "ULPGL Goma",
-    location: "Goma, DRC",
-    period: "2021 – 2025",
-  },
-];
-
-const workExperienceData = [
-  {
-    role: "Software Engineering Intern",
-    company: "Bittwok Technology Ltd",
-    period: "July 2025 – Present",
-  },
-  {
-    role: "Intern",
-    company: "Initiam",
-    period: "June – July 2025",
-  },
-];
+import { MapPin, Calendar, Code2, Sparkles } from "lucide-react";
 
 const stats = [
   { value: "2+", label: "Years", color: "from-blue-500 to-cyan-400" },
   { value: "Fullstack", label: "Specialization", color: "from-cyan-400 to-teal-400" },
   { value: "Kigali", label: "Based", color: "from-amber-400 to-orange-500" },
+];
+
+const valueTags = [
+  "Clean Code",
+  "User-Focused",
+  "Problem Solver",
+  "Team Player",
+  "Continuous Learner",
 ];
 
 export const About = () => {
@@ -43,58 +23,70 @@ export const About = () => {
           <h2 className="text-4xl md:text-5xl font-bold m-8 md:m-12 bg-gradient-to-r from-blue-500 via-cyan-400 to-teal-400 bg-clip-text text-transparent font-robotoFlex">
             About Me
           </h2>
+          <p className="text-gray-500 text-sm md:text-base -mt-6 mb-4 font-medium max-w-md mx-auto">
+            Building digital experiences that matter.
+          </p>
 
           {/* Stats bar */}
           <div className="flex flex-wrap justify-center gap-8 md:gap-12 mb-12 pb-12 border-b border-white/10">
             {stats.map((stat, i) => (
-              <div key={i} className="group">
+              <div
+                key={i}
+                className="group cursor-default transition-transform duration-200 hover:scale-105"
+              >
                 <span className={`text-2xl md:text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent block`}>
                   {stat.value}
                 </span>
-                <span className="text-gray-500 text-sm group-hover:text-gray-400 transition-colors">{stat.label}</span>
+                <span className="text-gray-500 text-sm group-hover:text-gray-400 transition-colors">
+                  {stat.label}
+                </span>
               </div>
             ))}
           </div>
 
-          <div className="grid lg:grid-cols-5 gap-12 max-w-4xl mx-auto">
+          <div className="grid lg:grid-cols-5 gap-12 max-w-4xl mx-auto text-left">
             {/* Left: Profile */}
             <div className="lg:col-span-2 flex flex-col items-center lg:items-start">
-              <div className="w-24 h-24 rounded-lg bg-gradient-to-br from-blue-500/20 via-cyan-500/20 to-teal-500/20 border border-cyan-500/20 flex items-center justify-center mb-6">
-                <Code2 size={40} className="text-cyan-400" />
+              <div className="relative group/avatar mb-6">
+                <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-cyan-500/30 via-teal-500/20 to-blue-500/30 blur-sm opacity-60 group-hover/avatar:opacity-80 transition-opacity" />
+                <div className="relative w-24 h-24 rounded-xl bg-gradient-to-br from-blue-500/20 via-cyan-500/20 to-teal-500/20 border border-cyan-500/30 flex items-center justify-center">
+                  <Code2 size={40} className="text-cyan-400" />
+                </div>
               </div>
               <h3 className="text-xl font-semibold text-white">StephMut Dev</h3>
-              <p className="text-gray-400 mt-1">Fullstack Developer</p>
+              <p className="text-cyan-400/90 mt-1 text-sm">Fullstack Developer</p>
               <div className="mt-4 space-y-2 text-sm text-gray-400">
                 <p className="flex items-center justify-center lg:justify-start gap-2">
-                  <MapPin size={14} />
+                  <MapPin size={14} className="flex-shrink-0 text-cyan-500/60" />
                   Kigali, Rwanda
                 </p>
                 <p className="flex items-center justify-center lg:justify-start gap-2">
-                  <Calendar size={14} />
+                  <Calendar size={14} className="flex-shrink-0 text-cyan-500/60" />
                   2+ years experience
                 </p>
               </div>
-              <div className="mt-6 flex gap-3">
+              <div className="mt-6 flex gap-3 flex-wrap justify-center lg:justify-start">
                 <a
                   href="#contact"
-                  className="inline-block bg-gradient-to-r from-blue-500 to-cyan-500 text-white py-2.5 px-5 rounded text-sm font-medium hover:opacity-90 transition"
+                  className="inline-block bg-gradient-to-r from-blue-500 to-cyan-500 text-white py-2.5 px-5 rounded-lg text-sm font-medium hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] transition-all hover:-translate-y-0.5"
                 >
                   Get in touch
                 </a>
                 <a
                   href="/resume.pdf"
                   download
-                  className="inline-block border border-white/20 py-2.5 px-5 rounded text-sm hover:bg-white/5 transition"
+                  className="inline-block border border-white/20 py-2.5 px-5 rounded-lg text-sm hover:bg-white/5 hover:border-cyan-500/30 transition-all"
                 >
                   Résumé
                 </a>
               </div>
             </div>
 
-            {/* Right: Bio + Experience + Education */}
-            <div className="lg:col-span-3 space-y-10 text-left">
-              <div>
-                <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
+            {/* Right: Bio + tags */}
+            <div className="lg:col-span-3 space-y-5">
+              <div className="p-6 rounded-xl border border-white/10 bg-white/[0.02] hover:border-cyan-500/20 transition-colors">
+                <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <Sparkles size={14} className="text-amber-400" />
                   Overview
                 </h4>
                 <p className="text-gray-300 leading-relaxed text-[15px]">
@@ -104,48 +96,20 @@ export const About = () => {
                   I thrive in collaborative environments and am ready to contribute to
                   meaningful projects.
                 </p>
+                <p className="mt-4 text-sm text-cyan-400/90 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  Open to opportunities
+                </p>
               </div>
-
-              <div>
-                <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">
-                  Experience
-                </h4>
-                <div className="space-y-5">
-                  {workExperienceData.map((item, i) => (
-                    <div key={i} className="flex gap-4">
-                      <div className={`flex-shrink-0 w-10 h-10 rounded flex items-center justify-center ${i === 0 ? "bg-cyan-500/20" : "bg-teal-500/20"}`}>
-                        <Briefcase size={18} className={i === 0 ? "text-cyan-400" : "text-teal-400"} />
-                      </div>
-                      <div>
-                        <h5 className="font-semibold text-white">{item.role}</h5>
-                        <p className="text-blue-400/90 text-sm">{item.company}</p>
-                        <p className="text-gray-500 text-xs mt-0.5">{item.period}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">
-                  Education
-                </h4>
-                <div className="space-y-5">
-                  {educationData.map((item, i) => (
-                    <div key={i} className="flex gap-4">
-                      <div className={`flex-shrink-0 w-10 h-10 rounded flex items-center justify-center ${i === 0 ? "bg-amber-500/20" : "bg-orange-500/20"}`}>
-                        <GraduationCap size={18} className={i === 0 ? "text-amber-400" : "text-orange-400"} />
-                      </div>
-                      <div>
-                        <h5 className="font-semibold text-white">{item.degree}</h5>
-                        <p className="text-blue-400/90 text-sm">{item.institution}</p>
-                        <p className="text-gray-500 text-xs mt-0.5">
-                          {item.location} · {item.period}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-2">
+                {valueTags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="px-3 py-1.5 rounded-full text-xs font-medium bg-cyan-500/10 text-cyan-300/90 border border-cyan-500/20 hover:bg-cyan-500/20 transition-colors"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
           </div>

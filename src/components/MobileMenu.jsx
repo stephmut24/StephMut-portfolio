@@ -1,4 +1,5 @@
 import { Github, Linkedin } from "lucide-react";
+import { XSocialIcon } from "./icons/XSocialIcon";
 
 export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
   return (
@@ -40,6 +41,18 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
             }`}
       >
         About
+      </a>
+      <a
+        href="#experience"
+        onClick={() => setMenuOpen(false)}
+        className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300 focus:outline-none focus:text-blue-400
+            ${
+              menuOpen
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-5"
+            }`}
+      >
+        Experience
       </a>
       <a
         href="#tech-stack"
@@ -113,7 +126,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
           <Github size={24} />
         </a>
         <a
-          href="https://linkedin.com/in/stephmut24"
+          href="https://www.linkedin.com/in/stephane-mugisho-mutarushwa/"
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => setMenuOpen(false)}
@@ -121,6 +134,16 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
           aria-label="LinkedIn"
         >
           <Linkedin size={24} />
+        </a>
+        <a
+          href="https://x.com/StephMutarushwa"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => setMenuOpen(false)}
+          className="text-gray-400 hover:text-white transition-colors p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+          aria-label="X"
+        >
+          <XSocialIcon size={22} />
         </a>
       </div>
     </div>

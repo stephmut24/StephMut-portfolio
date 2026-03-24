@@ -1,35 +1,46 @@
 /**
- * Horizontal infinite marquee displaying tech stack logos.
- * Logos sweep from left to right continuously.
+ * Horizontal infinite marquee — same tech items as the Skills section (no soft skills).
  */
+
+import { MARQUEE_ICON_BY_SKILL, SKILLS_GROUPS } from "../data/skillsCatalog";
 
 const DEVICON_CDN = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
 
 const TECH_LOGOS = {
-  react: `${DEVICON_CDN}/react/react-original.svg`,
-  nextjs: `${DEVICON_CDN}/nextjs/nextjs-original.svg`,
-  tailwind: `${DEVICON_CDN}/tailwindcss/tailwindcss-original.svg`,
+  javascript: `${DEVICON_CDN}/javascript/javascript-original.svg`,
   typescript: `${DEVICON_CDN}/typescript/typescript-original.svg`,
+  python: `${DEVICON_CDN}/python/python-original.svg`,
+  go: `${DEVICON_CDN}/go/go-original.svg`,
+  react: `${DEVICON_CDN}/react/react-original.svg`,
   nodejs: `${DEVICON_CDN}/nodejs/nodejs-original.svg`,
   express: `${DEVICON_CDN}/express/express-original.svg`,
   nestjs: `${DEVICON_CDN}/nestjs/nestjs-original.svg`,
-  python: `${DEVICON_CDN}/python/python-original.svg`,
-  mongodb: `${DEVICON_CDN}/mongodb/mongodb-original.svg`,
+  git: `${DEVICON_CDN}/git/git-original.svg`,
+  github: `${DEVICON_CDN}/github/github-original.svg`,
+  docker: `${DEVICON_CDN}/docker/docker-original.svg`,
+  postman: `${DEVICON_CDN}/postman/postman-original.svg`,
+  openapi: `${DEVICON_CDN}/openapi/openapi-original.svg`,
+  jest: `${DEVICON_CDN}/jest/jest-plain.svg`,
+  prisma: `${DEVICON_CDN}/prisma/prisma-original.svg`,
+  vscode: `${DEVICON_CDN}/vscode/vscode-original.svg`,
+  linux: `${DEVICON_CDN}/linux/linux-original.svg`,
   postgresql: `${DEVICON_CDN}/postgresql/postgresql-original.svg`,
+  mysql: `${DEVICON_CDN}/mysql/mysql-original.svg`,
+  mongodb: `${DEVICON_CDN}/mongodb/mongodb-original.svg`,
+  firebase: `${DEVICON_CDN}/firebase/firebase-plain.svg`,
+  vercel: `${DEVICON_CDN}/vercel/vercel-original.svg`,
 };
 
-const STACK_CONFIG = [
-  { name: "React", icon: "react" },
-  { name: "Next", icon: "nextjs" },
-  { name: "TailwindCSS", icon: "tailwind" },
-  { name: "Typescript", icon: "typescript" },
-  { name: "Node.js", icon: "nodejs" },
-  { name: "Express.js", icon: "express" },
-  { name: "Nest.js", icon: "nestjs" },
-  { name: "Python", icon: "python" },
-  { name: "MongoDB", icon: "mongodb" },
-  { name: "PostgreSQL", icon: "postgresql" },
-];
+function buildStackConfig() {
+  return SKILLS_GROUPS.filter((g) => g.title !== "Soft Skills").flatMap((g) =>
+    g.items.map((name) => ({
+      name,
+      icon: MARQUEE_ICON_BY_SKILL[name] ?? null,
+    })),
+  );
+}
+
+const STACK_CONFIG = buildStackConfig();
 
 const ACCENT_BORDERS = [
   "hover:border-blue-500/30",
@@ -39,7 +50,7 @@ const ACCENT_BORDERS = [
 ];
 
 function TechItem({ name, icon, index }) {
-  const src = TECH_LOGOS[icon];
+  const src = icon ? TECH_LOGOS[icon] : undefined;
   return (
     <div
       className={`flex flex-shrink-0 items-center justify-center gap-3 rounded-xl bg-white/5 border border-white/10 px-5 py-3 hover:bg-white/10 transition-colors ${ACCENT_BORDERS[index % ACCENT_BORDERS.length]}`}

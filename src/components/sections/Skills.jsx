@@ -1,38 +1,28 @@
 import { RevealOnScroll } from "../RevealOnScroll";
-import { Code2, Server, Wrench, MessageCircle } from "lucide-react";
+import { Code2, Layers, Wrench, Database, MessageCircle } from "lucide-react";
+import { SKILLS_GROUPS } from "../../data/skillsCatalog";
 
-const skillsData = [
-  {
-    title: "Frontend",
-    icon: Code2,
-    color: "cyan",
-    items: ["React", "Next.js", "TailwindCSS", "TypeScript", "Responsive Design"],
-  },
-  {
-    title: "Backend",
-    icon: Server,
-    color: "teal",
-    items: ["Node.js", "Express", "NestJS", "REST APIs", "MongoDB", "PostgreSQL"],
-  },
-  {
-    title: "Outils",
-    icon: Wrench,
-    color: "amber",
-    items: ["Git", "Vite", "VS Code", "Figma"],
-  },
-  {
-    title: "Soft Skills",
-    icon: MessageCircle,
-    color: "blue",
-    items: ["Communication", "Travail d'équipe", "Résolution de problèmes", "Apprentissage continu"],
-  },
-];
+const ICON_BY_KEY = {
+  languages: Code2,
+  frameworks: Layers,
+  tools: Wrench,
+  platforms: Database,
+  soft: MessageCircle,
+};
+
+const skillsData = SKILLS_GROUPS.map((g) => ({
+  title: g.title,
+  icon: ICON_BY_KEY[g.iconKey],
+  color: g.color,
+  items: g.items,
+}));
 
 const colorClasses = {
   cyan: "bg-cyan-500/10 border-cyan-500/20 text-cyan-400",
   teal: "bg-teal-500/10 border-teal-500/20 text-teal-400",
   amber: "bg-amber-500/10 border-amber-500/20 text-amber-400",
   blue: "bg-blue-500/10 border-blue-500/20 text-blue-400",
+  violet: "bg-violet-500/10 border-violet-500/20 text-violet-400",
 };
 
 export const Skills = () => {

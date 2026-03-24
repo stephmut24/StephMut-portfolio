@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Github, Linkedin } from "lucide-react";
+import { XSocialIcon } from "./icons/XSocialIcon";
 import { useScrollSpy } from "@/hooks";
 
 export const Navbar = ({ menuOpen, setMenuOpen }) => {
@@ -31,6 +32,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
             {[
               { href: "#home", label: "Home", id: "home" },
               { href: "#about", label: "About", id: "about" },
+              { href: "#experience", label: "Experience", id: "experience" },
               { href: "#tech-stack", label: "Tech", id: "tech-stack" },
               { href: "#skills", label: "Skills", id: "skills" },
               { href: "#certifications", label: "Certifications", id: "certifications" },
@@ -60,13 +62,22 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                 <Github size={20} />
               </a>
               <a
-                href="https://linkedin.com/in/stephmut24"
+                href="https://www.linkedin.com/in/stephane-mugisho-mutarushwa/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors p-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[hsl(0,0%,4%)]"
                 aria-label="LinkedIn"
               >
                 <Linkedin size={20} />
+              </a>
+              <a
+                href="https://x.com/StephMutarushwa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors p-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[hsl(0,0%,4%)]"
+                aria-label="X"
+              >
+                <XSocialIcon size={18} />
               </a>
             </div>
           </div>

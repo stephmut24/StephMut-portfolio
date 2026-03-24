@@ -5,6 +5,7 @@ import { Navbar } from "./components/Navbar";
 import { MobileMenu } from "./components/MobileMenu";
 import { Home } from "./components/sections/Home";
 import { About } from "./components/sections/About";
+import { Experience } from "./components/sections/Experience";
 import { TechStack } from "./components/sections/TechStack";
 import { Skills } from "./components/sections/Skills";
 import { Certifications } from "./components/sections/Certifications";
@@ -79,6 +80,9 @@ function App() {
             </Motion.div>
             <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
               <About />
+            </Motion.div>
+            <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
+              <Experience />
             </Motion.div>
             <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
               <TechStack />

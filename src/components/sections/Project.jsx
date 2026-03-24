@@ -1,44 +1,66 @@
-import { ExternalLink, User, Briefcase } from "lucide-react";
+import { ExternalLink, Github, User, Briefcase } from "lucide-react";
 
+/** Personal projects: set `githubUrl` to your repo (e.g. https://github.com/user/repo); leave "" to hide the GitHub link. */
 const personalProjects = [
   {
     id: 1,
-    title: "Portfolio Website",
+    title: "Interno",
     description:
-      "Professional portfolio featuring responsive design, smooth animations, particle effects, and integrated contact form with EmailJS.",
-    tech: ["React", "Tailwind", "Vite"],
-    status: "in-progress",
-    url: "https://stephmut.dev",
+      "Interior design and architecture landing page with responsive layout, sections for services, testimonials, portfolio highlights, and contact.",
+    tech: ["Javascript", "Tailwind CSS"],
+    status: "completed",
+    url: "https://interno-001.netlify.app/",
+    githubUrl: "https://github.com/stephmut24/interno",
   },
   {
     id: 2,
-    title: "Interno",
+    title: "Urgence Care",
     description:
-      "E-commerce demo with shopping cart, product catalog, and Stripe-powered checkout flow.",
-    tech: ["React", "Stripe", "Node.js"],
-    status: "completed",
-    url: "",
+      "Plateforme de gestion des urgences médicales reliant patients, ambulances et hôpitaux. Visualisation des flux en temps réel avec graphes de connaissances (Neo4j).",
+    tech: ["React", "Node.js", "MongoDB", "Neo4j"],
+    status: "in-progress",
+    url: "https://drive.google.com/file/d/1DCUCpIgECKOU0QJ3Hy5Y3RSBEdgc_uLF/view?usp=sharing",
+    githubUrl: "https://github.com/stephmut24/LocationApp",
   },
   {
     id: 3,
-    title: "Data Visualizer",
+    title: "CodeCircle",
     description:
-      "Interactive data visualization dashboard featuring D3.js charts, network graphs, and custom layout algorithms.",
-    tech: ["D3", "React"],
+      "CodeCircle - an AI-powered coding club platform featuring skill verification, courses, clubs, and hackathons.",
+    tech: ["React.js", "Tailwind CSS", "Nest.js", "PostgreSQL"],
     status: "completed",
-    url: "https://example.com/data-visualizer",
+    url: "https://drive.google.com/file/d/1fJ_fK9M1sPEHFdl5UYxd7PRgWBm3IOhd/view?usp=sharing",
+    githubUrl: "",
   },
 ];
 
 const clientProjects = [
   {
     id: 1,
-    title: "Urgence Care",
+    title: "CLASSIC ART's International SARL",
     description:
-      "Plateforme de gestion des urgences médicales reliant patients, ambulances et hôpitaux. Visualisation des flux en temps réel avec graphes de connaissances (Neo4j).",
-    tech: ["React", "Node.js", "MongoDB", "Neo4j"],
-    status: "in-progress",
-    url: "https://example.com/urgence-care",
+      "Web presence for an international art company: responsive frontend and TypeScript API layer with Node.js and Express.",
+    tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "TypeScript"],
+    status: "completed",
+    url: "https://international-art.netlify.app/",
+  },
+  {
+    id: 2,
+    title: "Miss Excellence",
+    description:
+      "Official site built with a React and Tailwind CSS frontend and a Node.js / Express backend.",
+    tech: ["Tailwind CSS", "React.js", "Node.js", "Express.js"],
+    status: "completed",
+    url: "https://missexcellence.org/",
+  },
+  {
+    id: 3,
+    title: "BG Bridal Paradise",
+    description:
+      "Bridal and wedding services site: React and Tailwind CSS frontend with Node.js, Express, and PostgreSQL.",
+    tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "PostgreSQL"],
+    status: "completed",
+    url: "https://bgbridalparadises.com/",
   },
 ];
 
@@ -72,7 +94,7 @@ function ProjectCard({ project }) {
         );
       })}
       </div>
-      <div className="flex justify-between items-center mt-4 pt-4 border-t border-white/5">
+      <div className="flex flex-wrap items-center gap-4 mt-4 pt-4 border-t border-white/5">
         {p.url ? (
           <a
             href={p.url}
@@ -86,6 +108,17 @@ function ProjectCard({ project }) {
         ) : (
           <span className="text-gray-500 text-sm italic">Coming soon</span>
         )}
+        {"githubUrl" in p && p.githubUrl ? (
+          <a
+            href={p.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors group/gh"
+          >
+            <Github size={16} className="group-hover/gh:scale-105 transition-transform" />
+            <span>GitHub</span>
+          </a>
+        ) : null}
       </div>
     </div>
   );

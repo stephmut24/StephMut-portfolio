@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { XSocialIcon } from "./icons/XSocialIcon";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -45,13 +46,22 @@ export const Footer = () => {
               <Github size={20} />
             </a>
             <a
-              href="https://linkedin.com/in/stephmut24"
+              href="https://www.linkedin.com/in/stephane-mugisho-mutarushwa/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors"
               aria-label="LinkedIn"
             >
               <Linkedin size={20} />
+            </a>
+            <a
+              href="https://x.com/StephMutarushwa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+              aria-label="X"
+            >
+              <XSocialIcon size={18} />
             </a>
           </div>
         </div>

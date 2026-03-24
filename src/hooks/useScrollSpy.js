@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const SECTION_IDS = ["home", "about", "tech-stack", "skills", "certifications", "projects", "contact"];
+const SECTION_IDS = ["home", "about", "experience", "tech-stack", "skills", "certifications", "projects", "contact"];
 
 /**
  * Returns the ID of the section currently in view.

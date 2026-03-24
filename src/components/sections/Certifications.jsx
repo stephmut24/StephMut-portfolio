@@ -3,22 +3,34 @@ import { Award } from "lucide-react";
 
 const certificationsData = [
   {
-    name: "Software Development Program",
-    issuer: "A2SV Ethiopia",
-    date: "2025",
-    url: "",
+    name: "Backend Development with Node.js",
+    issuer: "Solvit Africa",
+    date: "February 2026",
+    url: "https://drive.google.com/file/d/1pb2ZN9XV91a3tTp5f5Se4KvHq_l_qSFR/view?usp=sharing",
   },
   {
-    name: "Exemple: Responsive Web Design",
-    issuer: "freeCodeCamp",
-    date: "—",
-    url: "",
+    name: "Introduction to AI Agents",
+    issuer: "DataCamp",
+    date: "February 2026",
+    url: "https://drive.google.com/file/d/1LcZY8M9ffCjKQkSfoItEGVzNYtfUUton/view?usp=sharing",
   },
   {
-    name: "Exemple: JavaScript Algorithms",
-    issuer: "freeCodeCamp",
-    date: "—",
-    url: "",
+    name: "Introduction to Python",
+    issuer: "DataCamp",
+    date: "February 2026",
+    url: "https://drive.google.com/file/d/1mFZxr3K1Pxh2P42p3_FOWNq7hOt1j_Q2/view?usp=sharing",
+  },
+  {
+    name: "Backend Development Intern",
+    issuer: "HNG",
+    date: "November 2025",
+    url: "https://drive.google.com/file/d/1XM6QQGLNU2T_R8Jkppi4bsE0LHxI76Br/view?usp=sharing",
+  },
+  {
+    name: "Web development",
+    issuer: "USD's United Student Developer",
+    date: "September 2025",
+    url: "https://drive.google.com/file/d/1mH8oJCHSam1t9yPvnOJbsxXFOsdQjAt_/view?usp=sharing",
   },
 ];
 
