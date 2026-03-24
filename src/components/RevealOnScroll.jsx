@@ -1,27 +1,22 @@
-import { useEffect, useRef } from "react";
+import { motion as Motion } from "motion/react";
 
-export const RevealOnScroll = ({ children }) => {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add("visible");
-        }
-      },
-      { threshold: 0.01, rootMargin: "0px 0px 150px 0px" }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
+/**
+ * Scroll-triggered reveal using Motion. Replaces the previous CSS + IntersectionObserver approach.
+ */
+export const RevealOnScroll = ({ children, className = "", delay = 0 }) => {
   return (
-    <div ref={ref} className="reveal">
+    <Motion.div
+      className={className}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.12, margin: "0px 0px -48px 0px" }}
+      transition={{
+        duration: 0.55,
+        delay,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
       {children}
-    </div>
+    </Motion.div>
   );
 };

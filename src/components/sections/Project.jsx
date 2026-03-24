@@ -1,4 +1,20 @@
+import { motion as Motion } from "motion/react";
 import { ExternalLink, Github, User, Briefcase } from "lucide-react";
+import { RevealOnScroll } from "../RevealOnScroll";
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 26 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const staggerParent = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+};
 
 /** Personal projects: set `githubUrl` to your repo (e.g. https://github.com/user/repo); leave "" to hide the GitHub link. */
 const personalProjects = [
@@ -71,7 +87,14 @@ function ProjectCard({ project }) {
   };
   const p = project;
   return (
-    <div className="group p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:border-cyan-500/30 hover:shadow-[0_8px_30px_rgba(34,211,238,0.15)] transition-all duration-300">
+    <Motion.div
+      variants={cardVariants}
+      whileHover={{
+        y: -4,
+        transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] },
+      }}
+      className="group p-6 rounded-xl border border-white/10 hover:border-cyan-500/30 hover:shadow-[0_8px_30px_rgba(34,211,238,0.15)] transition-colors duration-300"
+    >
       <div className="flex items-start justify-between">
         <h3 className="text-xl font-bold mb-2">{p.title}</h3>
         <span className={`py-1 px-3 rounded-full text-sm ${statusStyles[p.status]}`}>
@@ -120,50 +143,80 @@ function ProjectCard({ project }) {
           </a>
         ) : null}
       </div>
-    </div>
+    </Motion.div>
   );
 }
 
 export const Project = () => {
   return (
     <section id="projects" className="min-h-screen flex items-center justify-center py-20">
-      <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold m-8 md:m-12 text-center bg-gradient-to-r from-blue-500 via-cyan-400 to-teal-400 bg-clip-text text-transparent font-robotoFlex">
+      <RevealOnScroll className="w-full">
+        <div className="max-w-5xl mx-auto px-4">
+          <Motion.h2
+            className="text-4xl md:text-5xl font-bold m-8 md:m-12 text-center bg-gradient-to-r from-blue-500 via-cyan-400 to-teal-400 bg-clip-text text-transparent font-robotoFlex"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
             Featured Projects
-          </h2>
+          </Motion.h2>
 
           <div className="space-y-12">
-            {/* Personal Projects */}
             <div>
-              <div className="flex items-center gap-2 mb-6">
+              <Motion.div
+                className="flex items-center gap-2 mb-6"
+                initial={{ opacity: 0, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+              >
                 <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
                   <User size={20} className="text-cyan-400" />
                 </div>
                 <h3 className="text-xl font-bold text-white">Personal Projects</h3>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              </Motion.div>
+              <Motion.div
+                className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                variants={staggerParent}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-40px" }}
+              >
                 {personalProjects.map((p) => (
                   <ProjectCard key={p.id} project={p} />
                 ))}
-              </div>
+              </Motion.div>
             </div>
 
-            {/* Client Projects */}
             <div>
-              <div className="flex items-center gap-2 mb-6">
+              <Motion.div
+                className="flex items-center gap-2 mb-6"
+                initial={{ opacity: 0, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+              >
                 <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-500/20">
                   <Briefcase size={20} className="text-amber-400" />
                 </div>
                 <h3 className="text-xl font-bold text-white">Client Projects</h3>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              </Motion.div>
+              <Motion.div
+                className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                variants={staggerParent}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-40px" }}
+              >
                 {clientProjects.map((p) => (
                   <ProjectCard key={p.id} project={p} />
                 ))}
-              </div>
+              </Motion.div>
             </div>
           </div>
         </div>
+      </RevealOnScroll>
     </section>
   );
 };

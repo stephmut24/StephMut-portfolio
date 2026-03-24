@@ -1,7 +1,19 @@
 import { useState, useEffect } from "react";
+import { motion as Motion } from "motion/react";
 import { Toast } from "../Toast";
+import { RevealOnScroll } from "../RevealOnScroll";
 import emailjs from "emailjs-com";
 import { env } from "@/config/env";
+
+const formStagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.08 } },
+};
+
+const formField = {
+  hidden: { opacity: 0, y: 14 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
+};
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -53,12 +65,28 @@ export const Contact = () => {
 
   return (
     <section id="contact" className="min-h-screen flex justify-center py-20">
-      <div className="px-4 w-full max-w-6xl mx-auto text-center">
-          <h2 className="text-5xl md:text-6xl font-bold m-8 md:m-12 bg-gradient-to-r from-blue-500 via-cyan-400 to-teal-400 bg-clip-text text-transparent font-robotoFlex">
+      <RevealOnScroll className="w-full">
+        <div className="px-4 w-full max-w-6xl mx-auto text-center">
+          <Motion.h2
+            className="text-5xl md:text-6xl font-bold m-8 md:m-12 bg-gradient-to-r from-blue-500 via-cyan-400 to-teal-400 bg-clip-text text-transparent font-robotoFlex"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
             Get in Touch
-          </h2>
-          <form action="" className="space-y-6 md:space-y-8 max-w-2xl mx-auto" onSubmit={handleSubmit} noValidate>
-            <div className="relative">
+          </Motion.h2>
+          <Motion.form
+            action=""
+            className="space-y-6 md:space-y-8 max-w-2xl mx-auto"
+            onSubmit={handleSubmit}
+            noValidate
+            variants={formStagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+          >
+            <Motion.div className="relative" variants={formField}>
               <label htmlFor="name" className="sr-only">Name</label>
               <input
                 type="text"
@@ -74,8 +102,8 @@ export const Contact = () => {
                   setFormData({ ...formData, name: e.target.value })
                 }
               />
-            </div>
-            <div className="relative">
+            </Motion.div>
+            <Motion.div className="relative" variants={formField}>
               <label htmlFor="email" className="sr-only">Email</label>
               <input
                 type="email"
@@ -91,8 +119,8 @@ export const Contact = () => {
                   setFormData({ ...formData, email: e.target.value })
                 }
               />
-            </div>
-            <div className="relative">
+            </Motion.div>
+            <Motion.div className="relative" variants={formField}>
               <label htmlFor="message" className="sr-only">Message</label>
               <textarea
                 id="message"
@@ -108,11 +136,14 @@ export const Contact = () => {
                   setFormData({ ...formData, message: e.target.value })
                 }
               />
-            </div>
-            <button
+            </Motion.div>
+            <Motion.button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white py-4 px-8 rounded-lg text-lg font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-black disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none flex items-center justify-center gap-2 min-h-[56px]"
+              variants={formField}
+              whileHover={!isSubmitting ? { scale: 1.01 } : undefined}
+              whileTap={!isSubmitting ? { scale: 0.99 } : undefined}
+              className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white py-4 px-8 rounded-lg text-lg font-medium transition relative overflow-hidden hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-black disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:shadow-none flex items-center justify-center gap-2 min-h-[56px]"
             >
               {isSubmitting ? (
                 <>
@@ -142,9 +173,10 @@ export const Contact = () => {
               ) : (
                 "Send Message"
               )}
-            </button>
-          </form>
+            </Motion.button>
+          </Motion.form>
         </div>
+      </RevealOnScroll>
       <Toast
         message={toast.message}
         type={toast.type}

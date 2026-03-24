@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { motion as Motion } from "motion/react";
 import { Github, Linkedin } from "lucide-react";
 import { XSocialIcon } from "./icons/XSocialIcon";
 import { useScrollSpy } from "@/hooks";
@@ -10,7 +11,14 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
   }, [menuOpen]);
   return (
-    <nav className="fixed top-0 w-full z-40 bg-[rgba(10, 10, 10, 0.8)] backdrop-blur-lg border-b border-white/10 shadow-lg" role="navigation" aria-label="Main navigation">
+    <Motion.nav
+      initial={{ y: -24, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed top-0 w-full z-40 bg-[rgba(10, 10, 10, 0.8)] backdrop-blur-lg border-b border-white/10 shadow-lg"
+      role="navigation"
+      aria-label="Main navigation"
+    >
       <div className="max-w-5xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <a href="#home" className="font-mono text-xl font-bold text-white font-robotoFlex">
@@ -83,6 +91,6 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
           </div>
         </div>
       </div>
-    </nav>
+    </Motion.nav>
   );
 };

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { AnimatePresence } from "motion/react";
 import "./App.css";
+import { SeoHead } from "./components/SeoHead";
 import { LoadingScreen } from "./components/LoadingScreen";
 import { Navbar } from "./components/Navbar";
 import { MobileMenu } from "./components/MobileMenu";
@@ -14,7 +16,6 @@ import { Contact } from "./components/sections/Contact";
 import { Footer } from "./components/Footer";
 import "./index.css";
 import MotionLayout from "./components/MotionLayout";
-import { motion as Motion } from "framer-motion";
 import Particles from "./components/motions/Particles";
 
 function App() {
@@ -37,7 +38,12 @@ function App() {
   }, []);
   return (
     <>
-      {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}
+      <SeoHead />
+      <AnimatePresence mode="wait">
+        {!isLoaded ? (
+          <LoadingScreen key="loading-screen" onComplete={() => setIsLoaded(true)} />
+        ) : null}
+      </AnimatePresence>
       <MotionLayout className={`min-h-screen transition-opacity duration-700 ${
           isLoaded ? "opacity-100" : "opacity-0"
         } bg-black text-gray-100 relative overflow-hidden`}>
@@ -61,45 +67,14 @@ function App() {
           <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
-          {/* Staggered entrance for main sections */}
-          <Motion.div
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: {},
-              visible: {
-                transition: {
-                  staggerChildren: 0.12,
-                  delayChildren: 0.1,
-                },
-              },
-            }}
-          >
-            <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 2 } }}>
-              <Home />
-            </Motion.div>
-            <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
-              <About />
-            </Motion.div>
-            <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
-              <Experience />
-            </Motion.div>
-            <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
-              <TechStack />
-            </Motion.div>
-            <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
-              <Skills />
-            </Motion.div>
-            <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
-              <Certifications />
-            </Motion.div>
-            <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
-              <Project />
-            </Motion.div>
-            <Motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
-              <Contact />
-            </Motion.div>
-          </Motion.div>
+          <Home />
+          <About />
+          <Experience />
+          <TechStack />
+          <Skills />
+          <Certifications />
+          <Project />
+          <Contact />
           <Footer />
         </main>
       </MotionLayout>

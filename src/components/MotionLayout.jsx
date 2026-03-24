@@ -1,4 +1,4 @@
-import { AnimatePresence, motion as Motion } from "framer-motion";
+import { AnimatePresence, motion as Motion } from "motion/react";
 import PropTypes from "prop-types";
 
 export default function MotionLayout({ children, className = "" }) {

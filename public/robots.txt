@@ -1,0 +1,5 @@
+# https://stephmut24.github.io/StephMut-portfolio/
+User-agent: *
+Allow: /
+
+Sitemap: https://stephmut24.github.io/StephMut-portfolio/sitemap.xml

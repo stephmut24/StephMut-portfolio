@@ -1,5 +1,16 @@
+import { motion as Motion } from "motion/react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import { Briefcase, GraduationCap } from "lucide-react";
+
+const expCard = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const expStagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+};
 
 const workExperienceData = [
   {
@@ -67,11 +78,19 @@ export const Experience = () => {
                 </div>
                 <h3 className="text-xl font-bold text-white">Work Experience</h3>
               </div>
-              <div className="space-y-6">
+              <Motion.div
+                className="space-y-6"
+                variants={expStagger}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-40px" }}
+              >
                 {workExperienceData.map((item, i) => (
-                  <div
+                  <Motion.div
                     key={i}
-                    className="p-6 rounded-xl border border-white/10 hover:border-cyan-500/20 transition-all bg-white/[0.02]"
+                    variants={expCard}
+                    whileHover={{ y: -2, transition: { duration: 0.2 } }}
+                    className="p-6 rounded-xl border border-white/10 hover:border-cyan-500/20 transition-colors bg-white/[0.02]"
                   >
                     <h4 className="font-semibold text-white">{item.role}</h4>
                     <p className="text-cyan-400 text-sm mt-0.5">{item.company}</p>
@@ -84,9 +103,9 @@ export const Experience = () => {
                         {item.description}
                       </p>
                     )}
-                  </div>
+                  </Motion.div>
                 ))}
-              </div>
+              </Motion.div>
             </div>
 
             {/* Education */}
@@ -97,11 +116,19 @@ export const Experience = () => {
                 </div>
                 <h3 className="text-xl font-bold text-white">Education</h3>
               </div>
-              <div className="space-y-6">
+              <Motion.div
+                className="space-y-6"
+                variants={expStagger}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-40px" }}
+              >
                 {educationData.map((item, i) => (
-                  <div
+                  <Motion.div
                     key={i}
-                    className="p-6 rounded-xl border border-white/10 hover:border-amber-500/20 transition-all bg-white/[0.02]"
+                    variants={expCard}
+                    whileHover={{ y: -2, transition: { duration: 0.2 } }}
+                    className="p-6 rounded-xl border border-white/10 hover:border-amber-500/20 transition-colors bg-white/[0.02]"
                   >
                     <h4 className="font-semibold text-white">{item.degree}</h4>
                     <p className="text-cyan-400 text-sm mt-0.5">{item.institution}</p>
@@ -120,9 +147,9 @@ export const Experience = () => {
                         {item.description}
                       </p>
                     )}
-                  </div>
+                  </Motion.div>
                 ))}
-              </div>
+              </Motion.div>
             </div>
           </div>
         </div>

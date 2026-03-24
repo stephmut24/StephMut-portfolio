@@ -1,5 +1,16 @@
+import { motion as Motion } from "motion/react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import { MapPin, Calendar, Code2, Sparkles } from "lucide-react";
+
+const aboutStagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.08 } },
+};
+
+const aboutItem = {
+  hidden: { opacity: 0, y: 14 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
+};
 
 const stats = [
   { value: "2+", label: "Years", color: "from-blue-500 to-cyan-400" },
@@ -28,11 +39,19 @@ export const About = () => {
           </p>
 
           {/* Stats bar */}
-          <div className="flex flex-wrap justify-center gap-8 md:gap-12 mb-12 pb-12 border-b border-white/10">
+          <Motion.div
+            className="flex flex-wrap justify-center gap-8 md:gap-12 mb-12 pb-12 border-b border-white/10"
+            variants={aboutStagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-30px" }}
+          >
             {stats.map((stat, i) => (
-              <div
+              <Motion.div
                 key={i}
-                className="group cursor-default transition-transform duration-200 hover:scale-105"
+                variants={aboutItem}
+                whileHover={{ scale: 1.05 }}
+                className="group cursor-default"
               >
                 <span className={`text-2xl md:text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent block`}>
                   {stat.value}
@@ -40,9 +59,9 @@ export const About = () => {
                 <span className="text-gray-500 text-sm group-hover:text-gray-400 transition-colors">
                   {stat.label}
                 </span>
-              </div>
+              </Motion.div>
             ))}
-          </div>
+          </Motion.div>
 
           <div className="grid lg:grid-cols-5 gap-12 max-w-4xl mx-auto text-left">
             {/* Left: Profile */}

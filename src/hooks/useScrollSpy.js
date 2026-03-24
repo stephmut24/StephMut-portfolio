@@ -18,7 +18,7 @@ export function useScrollSpy() {
       for (let i = SECTION_IDS.length - 1; i >= 0; i--) {
         const section = document.getElementById(SECTION_IDS[i]);
         if (section) {
-          const { offsetTop, offsetHeight } = section;
+          const { offsetTop } = section;
           const threshold = offsetTop - viewportHeight / 3;
           if (scrollY >= threshold) {
             current = SECTION_IDS[i];

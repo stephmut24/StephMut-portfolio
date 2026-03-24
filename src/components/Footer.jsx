@@ -1,3 +1,4 @@
+import { motion as Motion } from "motion/react";
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
 import { XSocialIcon } from "./icons/XSocialIcon";
 
@@ -9,7 +10,11 @@ export const Footer = () => {
   };
 
   return (
-    <footer
+    <Motion.footer
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "0px 0px -40px 0px" }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className="relative z-10 border-t border-white/10 bg-black/50 py-12 px-4"
       role="contentinfo"
     >
@@ -65,15 +70,21 @@ export const Footer = () => {
             </a>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-white/5 text-center">
+        <Motion.div
+          className="mt-8 pt-8 border-t border-white/5 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15, duration: 0.45 }}
+        >
           <p className="text-gray-500 text-sm">
             © {currentYear} StephMut. All rights reserved.
           </p>
           <p className="text-gray-600 text-xs mt-1">
             Fullstack Developer • Kigali, Rwanda
           </p>
-        </div>
+        </Motion.div>
       </div>
-    </footer>
+    </Motion.footer>
   );
 };
